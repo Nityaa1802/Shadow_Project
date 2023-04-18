@@ -14,7 +14,7 @@ public class Project {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "projectName")
@@ -39,7 +39,7 @@ public class Project {
     private User teamLead;
 
     @Column(name = "isCompleted")
-    private boolean isCompleted;
+    private boolean completed;
 
     @Column(name = "img")
     private String img;
