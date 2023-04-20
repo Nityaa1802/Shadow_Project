@@ -1,6 +1,7 @@
 package com.example.shadow_project.entity.User;
 
 import com.example.shadow_project.Payload.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +15,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register/response")
-    public ResponseEntity<ApiResponse> registerUser(@RequestBody UserDto userDto){
+    public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody UserDto userDto){
         UserDto userDto1 = this.userService.registerUser(userDto);
         return new ResponseEntity<>(new ApiResponse("User Registered Successfully",true), HttpStatus.OK);
     }
 
     @PostMapping("/register/user")
-    public ResponseEntity<UserDto> registerUser2(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> registerUser2(@Valid @RequestBody UserDto userDto){
         UserDto userDto1 = this.userService.registerUser(userDto);
         return ResponseEntity.ok(userDto1);
     }
