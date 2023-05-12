@@ -3,9 +3,9 @@ package com.example.shadow_project.entity.Project;
 import com.example.shadow_project.entity.User.User;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.sql.Date;
 import java.util.List;
+
 
 @Entity
 @Table(name = "project")
