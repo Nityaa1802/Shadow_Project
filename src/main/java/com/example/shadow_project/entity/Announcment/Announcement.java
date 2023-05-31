@@ -1,10 +1,15 @@
 package com.example.shadow_project.entity.Announcment;
-
 import com.example.shadow_project.entity.User.User;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "announcment")
+@Data
+
 public class Announcement {
     @Id
     @Column(name = "id")
@@ -21,5 +26,9 @@ public class Announcement {
     private boolean isApproved;
     @Column(name = "link")
     private String link;
+    @Column(name = "uploadedOn")
+    @CreationTimestamp
+    private Date uploadedOn;
+
 
 }
