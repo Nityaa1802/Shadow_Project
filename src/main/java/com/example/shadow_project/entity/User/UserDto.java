@@ -4,6 +4,9 @@ package com.example.shadow_project.entity.User;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.util.*;
+
+
 @Data
 public class UserDto {
     @NotEmpty
@@ -17,7 +20,8 @@ public class UserDto {
     @Size(min = 6 , max = 15 , message = "Password must be min of 6 chars and max of 15 chars ")
     private String password;
     @NotEmpty
-    private String qualifications;
+    @Size(min=1,max=10,message = "You should input at least 1 skill  ")
+    List<String> skills=new ArrayList<>();
 
 
 

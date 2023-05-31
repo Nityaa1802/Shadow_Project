@@ -29,6 +29,8 @@ public class Announcement {
     @Column(name = "uploadedOn")
     @CreationTimestamp
     private Date uploadedOn;
+    @Column(name = "img")
+    private String img;
 
 
 }

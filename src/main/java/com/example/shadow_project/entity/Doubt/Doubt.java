@@ -17,6 +17,7 @@ import java.util.Set;
 public class Doubt {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "askedBy")
@@ -24,8 +25,7 @@ public class Doubt {
     @Column(name = "question")
     private String question;
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "doubts_answers", joinColumns = @JoinColumn(name = "doubt_id"))
-    @Column(name = "answers")
+    @CollectionTable(name = "doubts_answers", joinColumns = @JoinColumn(name = "doubtId"))
     private Set<Answers> answersList;
     @CreationTimestamp
     @Column(name = "uploadedOn")

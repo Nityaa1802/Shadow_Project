@@ -12,4 +12,5 @@ public class AnnouncementDto {
     private boolean isApproved;
     private User owner;
     private String link;
+    private String img;
 }

@@ -4,7 +4,7 @@ import com.example.shadow_project.entity.Project.Project;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -13,20 +13,26 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "userName", length =20 )
+    @Column(name ="userId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
+
+    @Column(name = "userName", length =20,unique = true )
     private String userName;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email",unique = true)
     private String email;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "qualifications")
-    private String qualifications;
+    @ElementCollection
+    @CollectionTable(name = "skills_table",joinColumns =@JoinColumn(name = "userId"))
+    @Column(name = "skills")
+    private List<String> skills=new ArrayList<>();
 
     @Column(name = "linkedIn")
     private String linkedIn;

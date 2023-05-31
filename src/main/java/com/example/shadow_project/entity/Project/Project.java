@@ -1,10 +1,12 @@
 package com.example.shadow_project.entity.Project;
 
+import com.example.shadow_project.entity.TeamMember.TeamMember;
 import com.example.shadow_project.entity.User.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -39,12 +41,13 @@ public class Project {
     private User teamLead;
 
     @Column(name = "isCompleted")
-    private boolean completed;
+    private boolean isCompleted;
 
     @Column(name = "img")
     private String img;
 
-    @ManyToMany
-    private List<User> teamMembers;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name ="Team_Members",joinColumns = @JoinColumn(name = "projectId"))
+    private Set<TeamMember> teamMembers;
 
 }
