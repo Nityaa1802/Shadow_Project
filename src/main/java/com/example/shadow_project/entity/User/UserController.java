@@ -25,6 +25,10 @@ public class UserController {
     public ResponseEntity<UserResponse> registerUser2(@Valid @RequestBody UserDto userDto){
         UserResponse userResponse = this.userService.registerUser(userDto);
         System.out.println("2nd");
+
+
+
+
         return ResponseEntity.ok(userResponse);
     }
 
