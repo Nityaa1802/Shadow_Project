@@ -14,21 +14,31 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
 
     @Override
-    public UserDto registerUser(UserDto userDto) {
+    public UserResponse registerUser(UserDto userDto) {
         User user = this.modelMapper.map(userDto,User.class);
         User savedUser = this.userRepo.save(user);
-        UserDto savedUserDto = this.modelMapper.map(savedUser, UserDto.class);
-        return savedUserDto;
+        UserResponse savedUserResponse = this.modelMapper.map(savedUser, UserResponse.class);
+        return savedUserResponse;
     }
 
     @Override
-    public UserDto loginUser(String userName, String password) {
+    public UserResponse loginUser(String userName, String password) {
 
         User user = this.userRepo.getValidUser(userName,password);
         if(user==null){
             throw new ResourceNotFoundException("User","userName",userName);
         }
-        UserDto userDto = this.modelMapper.map(user, UserDto.class);
-        return userDto;
+        UserResponse userResponse = this.modelMapper.map(user, UserResponse.class);
+        return userResponse;
+    }
+
+    @Override
+    public UserResponse getUser(Long userId) {
+        User user=this.userRepo.getUser(userId);
+        if(user==null){
+            throw new ResourceNotFoundException("User","userId",String.valueOf(userId));
+        }
+        UserResponse userResponse=this.modelMapper.map(user, UserResponse.class);
+        return userResponse;
     }
 }

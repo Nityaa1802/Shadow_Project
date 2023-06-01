@@ -23,6 +23,4 @@ public class UserDto {
     @Size(min=1,max=10,message = "You should input at least 1 skill  ")
     List<String> skills=new ArrayList<>();
 
-
-
 }

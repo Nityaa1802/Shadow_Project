@@ -13,8 +13,9 @@ public class Answers {
 
     private String answer;
 
+    @OneToOne
     private User replier;
 
-    @CreationTimestamp
-    private Date uploadedOn;
+
+    private Date uploadedAns;
 }

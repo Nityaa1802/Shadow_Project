@@ -24,7 +24,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDto uploadProject(ProjectDto projectDto) {
 
         modelMapper.typeMap(ProjectDto.class, Project.class).addMappings(
-                mapper-> mapper.map(projectDto1->userRepo.findUserByUserName(projectDto.getTeamLead()),Project::setTeamLead)
+                mapper-> mapper.map(projectDto1->userRepo.getUserByUserName(projectDto.getTeamLead()),Project::setTeamLead)
         );
 
         Project project = modelMapper.map(projectDto,Project.class);
