@@ -4,6 +4,8 @@ import com.example.shadow_project.entity.TeamMember.TeamMember;
 import com.example.shadow_project.entity.User.User;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
@@ -34,6 +36,7 @@ public class Project {
     @Column(name = "report")
     private String report;
 
+    @CreationTimestamp
     @Column(name = "startedDate")
     private Date startedDate;
 

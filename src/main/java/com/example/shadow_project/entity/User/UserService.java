@@ -7,4 +7,6 @@ public interface UserService {
     UserResponse loginUser(String username, String password);
 
     UserResponse getUser(Long userId);
+
+    UserResponse updateUserDetails(Long userId,UserDto userDto);
 }

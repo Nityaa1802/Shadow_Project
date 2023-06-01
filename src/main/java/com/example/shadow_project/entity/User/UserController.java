@@ -17,32 +17,30 @@ public class UserController {
     @PostMapping("/register/response")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody UserDto userDto){
         UserResponse userResponse = this.userService.registerUser(userDto);
-        System.out.println("1st");
         return new ResponseEntity<>(new ApiResponse("User Registered Successfully",true), HttpStatus.OK);
     }
 
     @PostMapping("/register/user")
     public ResponseEntity<UserResponse> registerUser2(@Valid @RequestBody UserDto userDto){
         UserResponse userResponse = this.userService.registerUser(userDto);
-        System.out.println("2nd");
-
-
-
-
         return ResponseEntity.ok(userResponse);
     }
 
     @GetMapping("/login/{userName}/{password}")
     public ResponseEntity<UserResponse> loginUser(@PathVariable("userName") String userName , @PathVariable("password") String password){
         UserResponse userResponse = this.userService.loginUser(userName,password);
-        System.out.println("login");
         return ResponseEntity.ok(userResponse);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> getUser(@PathVariable("userId") Long userId){
         UserResponse userResponse=this.userService.getUser(userId);
-        System.out.println("3rd");
+        return ResponseEntity.ok(userResponse);
+    }
+
+    @PutMapping("/updateDetails/{userId}")
+    public ResponseEntity<UserResponse> updateUserDetails(@PathVariable("userId") Long userId,@Valid @RequestBody UserDto userDto) {
+        UserResponse userResponse=this.userService.updateUserDetails(userId,userDto);
         return ResponseEntity.ok(userResponse);
     }
 }

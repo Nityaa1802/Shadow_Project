@@ -41,4 +41,20 @@ public class UserServiceImpl implements UserService {
         UserResponse userResponse=this.modelMapper.map(user, UserResponse.class);
         return userResponse;
     }
+
+    @Override
+    public UserResponse updateUserDetails(Long userId, UserDto userDto) {
+        User user=this.userRepo.getUser(userId);
+        if (user==null){
+            throw new ResourceNotFoundException("User","userId",String.valueOf(userId));
+        }
+        user.setUserName(userDto.getUserName());
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());
+        user.setLinkedIn(userDto.getLinkedIn());
+        user.setSkills(userDto.getSkills());
+        this.userRepo.save(user);
+        UserResponse userResponse=this.modelMapper.map(user, UserResponse.class);
+        return userResponse;
+    }
 }
