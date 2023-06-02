@@ -1,12 +1,13 @@
 package com.example.shadow_project.entity.Answer;
 
-import com.example.shadow_project.entity.User.User;
 import lombok.Data;
 
 @Data
-public class AnswersDto {
+public class AnswerDto {
 
     private String answer;
 
-    private User replier;
+    private String replier;
+
+
 }
