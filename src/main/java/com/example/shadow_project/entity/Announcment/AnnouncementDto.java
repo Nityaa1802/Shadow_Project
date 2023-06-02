@@ -10,7 +10,7 @@ public class AnnouncementDto {
     private String title;
     private String description;
     private boolean isApproved;
-    private User owner;
+    private String owner;
     private String link;
     private String img;
 }

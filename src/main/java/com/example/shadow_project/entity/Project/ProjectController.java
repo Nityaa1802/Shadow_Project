@@ -11,7 +11,7 @@ public class ProjectController {
     @Autowired
     private ProjectServiceImpl projectService;
 
-    @PostMapping("/register/project")
+    @PostMapping("/register")
     public ResponseEntity<Project> registerProject(@RequestBody ProjectDto projectDto){
         Project savedProject=projectService.uploadProject(projectDto);
         return ResponseEntity.ok(savedProject);
