@@ -9,7 +9,7 @@ import java.util.Set;
 @Data
 public class DoubtDto {
 
-    private User askedBy;
+    private String askedBy;
     private String question;
     private Set<Answers> answersList;
 }
