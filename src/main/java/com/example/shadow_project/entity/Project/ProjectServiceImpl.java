@@ -21,20 +21,36 @@ public class ProjectServiceImpl implements ProjectService {
     private UserRepo userRepo;
 
     @Override
-    public ProjectDto uploadProject(ProjectDto projectDto) {
+    public Project uploadProject(ProjectDto projectDto) {
 
         modelMapper.typeMap(ProjectDto.class, Project.class).addMappings(
-                mapper-> mapper.map(projectDto1->userRepo.findUserByUserName(projectDto.getTeamLead()),Project::setTeamLead)
+                mapper-> mapper.map(projectDto1->userRepo.getUserByUserName(projectDto.getTeamLead()),Project::setTeamLead)
         );
 
         Project project = modelMapper.map(projectDto,Project.class);
         Project savedProject=projectRepo.save(project);
 
-        ProjectDto savedProjectDto = modelMapper.map(savedProject, ProjectDto.class);
-        return savedProjectDto;
+
+        return savedProject;
 
     }
 
 
+    @Override
+    public Project getProject(Long id) {
+        Project project=this.projectRepo.getById(id);
+        return project;
+    }
 
+    @Override
+    public Project updateProject(Long id,ProjectDto projectDto) {
+        Project project=this.projectRepo.getById(id);
+        project.setProjectName(projectDto.getProjectName());
+        project.setDescription(projectDto.getDescription());
+        project.setGithub(projectDto.getGithub());
+        project.setPortfolio(projectDto.getPortfolio());
+        project.setReport(projectDto.getReport());
+        this.projectRepo.save(project);
+        return project;
+    }
 }

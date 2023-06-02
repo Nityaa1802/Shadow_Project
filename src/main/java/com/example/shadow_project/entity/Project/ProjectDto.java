@@ -15,4 +15,9 @@ public class ProjectDto {
     private String github;
 
     private String teamLead;
+
+    private String report;
+
+    private String portfolio;
+
 }

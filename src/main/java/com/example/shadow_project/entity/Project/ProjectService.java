@@ -5,7 +5,10 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProjectService {
 
-    ProjectDto uploadProject(ProjectDto projectDto);
+    Project uploadProject(ProjectDto projectDto);
 
+    Project getProject(Long id);
+
+    Project updateProject(Long id,ProjectDto projectDto);
 
 }

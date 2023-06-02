@@ -24,11 +24,15 @@ public class Doubt {
     private User askedBy;
     @Column(name = "question")
     private String question;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "doubts_answers", joinColumns = @JoinColumn(name = "doubtId"))
-    private Set<Answers> answersList;
+
     @CreationTimestamp
     @Column(name = "uploadedOn")
     private Date uploadedOn;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "doubts_answers", joinColumns = @JoinColumn(name = "doubtId"))
+    private Set<Answers> answersList;
+
+
 
 }

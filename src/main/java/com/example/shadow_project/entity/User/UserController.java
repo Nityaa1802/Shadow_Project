@@ -16,19 +16,31 @@ public class UserController {
 
     @PostMapping("/register/response")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody UserDto userDto){
-        UserDto userDto1 = this.userService.registerUser(userDto);
+        UserResponse userResponse = this.userService.registerUser(userDto);
         return new ResponseEntity<>(new ApiResponse("User Registered Successfully",true), HttpStatus.OK);
     }
 
     @PostMapping("/register/user")
-    public ResponseEntity<UserDto> registerUser2(@Valid @RequestBody UserDto userDto){
-        UserDto userDto1 = this.userService.registerUser(userDto);
-        return ResponseEntity.ok(userDto1);
+    public ResponseEntity<UserResponse> registerUser2(@Valid @RequestBody UserDto userDto){
+        UserResponse userResponse = this.userService.registerUser(userDto);
+        return ResponseEntity.ok(userResponse);
     }
 
     @GetMapping("/login/{userName}/{password}")
-    public ResponseEntity<UserDto> loginUser(@PathVariable("userName") String userName , @PathVariable("password") String password){
-        UserDto userDto = this.userService.loginUser(userName,password);
-        return ResponseEntity.ok(userDto);
+    public ResponseEntity<UserResponse> loginUser(@PathVariable("userName") String userName , @PathVariable("password") String password){
+        UserResponse userResponse = this.userService.loginUser(userName,password);
+        return ResponseEntity.ok(userResponse);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponse> getUser(@PathVariable("userId") Long userId){
+        UserResponse userResponse=this.userService.getUser(userId);
+        return ResponseEntity.ok(userResponse);
+    }
+
+    @PutMapping("/updateDetails/{userId}")
+    public ResponseEntity<UserResponse> updateUserDetails(@PathVariable("userId") Long userId,@Valid @RequestBody UserDto userDto) {
+        UserResponse userResponse=this.userService.updateUserDetails(userId,userDto);
+        return ResponseEntity.ok(userResponse);
     }
 }
