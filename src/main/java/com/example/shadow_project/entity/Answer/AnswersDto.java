@@ -8,5 +8,5 @@ public class AnswersDto {
 
     private String answer;
 
-    private User replier;
+    private String replier;
 }
