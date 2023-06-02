@@ -8,6 +8,4 @@ public class AnswerDto {
     private String answer;
 
     private String replier;
-
-
 }
