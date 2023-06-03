@@ -11,4 +11,8 @@ public interface ProjectService {
 
     Project updateProject(Long id,ProjectDto projectDto);
 
+    Project addTeamMember(Long teamLeadId,String teamMemberUserName,String Role,Long ProjectId);
+
+    Project removeTeamMember(Long teamLeadId,String teamMemberUserName,Long ProjectId);
+
 }

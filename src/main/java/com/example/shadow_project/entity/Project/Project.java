@@ -7,6 +7,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -49,8 +50,8 @@ public class Project {
     @Column(name = "img")
     private String img;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER )
     @CollectionTable(name ="Team_Members",joinColumns = @JoinColumn(name = "projectId"))
-    private Set<TeamMember> teamMembers;
+    private Set<TeamMember> teamMembers=new HashSet<>();
 
 }

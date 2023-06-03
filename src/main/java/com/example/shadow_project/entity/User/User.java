@@ -2,13 +2,18 @@ package com.example.shadow_project.entity.User;
 
 import com.example.shadow_project.entity.Project.Project;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.*;
 
 
 @Entity
 @Table(name = "user")
+//@AllArgsConstructor
+//@Getter
+//@Setter
+//@ToString
+//@NoArgsConstructor
 @Data
 public class User {
 
@@ -41,8 +46,6 @@ public class User {
     private String img;
 
     @ManyToMany
-    private List<Project> projects;
-
-
+    private List<Project> projects=new ArrayList<>();
 
 }

@@ -49,6 +49,7 @@ public class DoubtServiceImpl implements DoubtService {
         else{
             doubt.getAnswersList().add(answers);
         }
+
         Doubt updatedAnswerDoubt = doubtRepo.save(doubt);
         return updatedAnswerDoubt;
 

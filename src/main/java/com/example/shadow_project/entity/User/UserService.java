@@ -9,4 +9,6 @@ public interface UserService {
     UserResponse getUser(Long userId);
 
     UserResponse updateUserDetails(Long userId,UserDto userDto);
+
+
 }

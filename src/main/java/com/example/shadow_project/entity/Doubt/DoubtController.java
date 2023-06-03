@@ -23,7 +23,7 @@ public class DoubtController {
         return ResponseEntity.ok(doubt);
     }
     @PutMapping("/answer/{doubtId}")
-    public ResponseEntity<Doubt> uploadAnsToDoubt(@PathVariable("doubtId") Long id, AnswerDto answerDto){
+    public ResponseEntity<Doubt> uploadAnsToDoubt(@PathVariable("doubtId") Long id, @RequestBody AnswerDto answerDto){
         Doubt doubt = doubtService.uploadAns(id,answerDto);
         return ResponseEntity.ok(doubt);
     }
