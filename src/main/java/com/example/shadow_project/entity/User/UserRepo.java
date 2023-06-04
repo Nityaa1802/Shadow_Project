@@ -16,4 +16,6 @@ public interface UserRepo extends JpaRepository<User,Long> {
 
     @Query(value= "select u from User u where u.userName= :userName")
     User getUserByUserName(@PathParam("userName") String userName);
+    @Query(value = "update User u set u.password = :newPassword where u.userId = :userId")
+    User updatePassword(@PathParam("newPassword") String newPassword, @PathParam("userId") Long userId);
 }

@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -45,6 +48,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse updateUserDetails(Long userId, UserDto userDto) {
         User user=this.userRepo.getUser(userId);
+
+        // I think this should not be here
         if (user==null){
             throw new ResourceNotFoundException("User","userId",String.valueOf(userId));
         }
@@ -56,5 +61,18 @@ public class UserServiceImpl implements UserService {
         this.userRepo.save(user);
         UserResponse userResponse=this.modelMapper.map(user, UserResponse.class);
         return userResponse;
+    }
+
+    @Override
+    public Map<UserResponse,String> updatePassword(Long userId, String oldPassword , String newPassword) throws Exception {
+        User user = this.userRepo.getUser(userId);
+        if(oldPassword != user.getPassword()){
+            throw new Exception("Password dosen't match please enter the correct Password");
+        }
+        User user1 = this.userRepo.updatePassword(newPassword,userId);
+        UserResponse userResponse = this.modelMapper.map(user1, UserResponse.class);
+        Map<UserResponse,String> result = new HashMap<>();
+        result.put(userResponse,"Your Password has been updated to : "+newPassword);
+        return result;
     }
 }
