@@ -2,11 +2,14 @@ package com.example.shadow_project.entity.Doubt;
 import com.example.shadow_project.entity.Answer.AnswerDto;
 import com.example.shadow_project.entity.Answer.Answers;
 import com.example.shadow_project.entity.User.UserRepo;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -17,6 +20,8 @@ public class DoubtServiceImpl implements DoubtService {
     private UserRepo userRepo;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public Doubt uploadDoubt(DoubtDto doubtDto){
@@ -53,5 +58,16 @@ public class DoubtServiceImpl implements DoubtService {
         Doubt updatedAnswerDoubt = doubtRepo.save(doubt);
         return updatedAnswerDoubt;
 
+    }
+
+    @Override
+    public List<Doubt> top6Doubts() throws Exception {
+        TypedQuery<Doubt> query = entityManager.createQuery("SELECT d FROM Doubt d ORDER BY d.uploadedOn DESC", Doubt.class);
+        query.setMaxResults(6);
+        List<Doubt> doubts = query.getResultList();
+        if(doubts==null || doubts.size()==0){
+            throw new Exception("There no Doubts Present at this point");
+        }
+        return doubts;
     }
 }
