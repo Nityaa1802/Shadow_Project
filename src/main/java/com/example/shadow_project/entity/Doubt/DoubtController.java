@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/doubt")
 public class DoubtController {
@@ -26,5 +28,10 @@ public class DoubtController {
     public ResponseEntity<Doubt> uploadAnsToDoubt(@PathVariable("doubtId") Long id, @RequestBody AnswerDto answerDto){
         Doubt doubt = doubtService.uploadAns(id,answerDto);
         return ResponseEntity.ok(doubt);
+    }
+    @GetMapping("/latestDoubts")
+    public ResponseEntity<List<Doubt>> top6Doubts() throws Exception {
+        List<Doubt> doubtList = doubtService.top6Doubts();
+        return ResponseEntity.ok(doubtList);
     }
 }
