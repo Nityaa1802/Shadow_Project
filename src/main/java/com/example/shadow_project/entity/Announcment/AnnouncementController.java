@@ -28,4 +28,9 @@ public class AnnouncementController {
         List<Announcement> announcementList = announcementService.top6Announcements();
         return ResponseEntity.ok(announcementList);
     }
+    @GetMapping("/latest30DaysAnnouncements")
+    public ResponseEntity<List<Announcement>> getLatestAnnouncement() throws Exception {
+        List<Announcement> announcementList = announcementService.latestAnnouncement();
+        return ResponseEntity.ok(announcementList);
+    }
 }

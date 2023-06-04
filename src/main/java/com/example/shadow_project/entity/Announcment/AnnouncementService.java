@@ -9,4 +9,6 @@ public interface AnnouncementService {
     Announcement getAnnouncement(Long id);
 
     List<Announcement> top6Announcements() throws Exception;
+
+    List<Announcement> latestAnnouncement() throws Exception;
 }
