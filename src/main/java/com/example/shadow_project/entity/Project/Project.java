@@ -3,7 +3,7 @@ package com.example.shadow_project.entity.Project;
 import com.example.shadow_project.entity.TeamMember.TeamMember;
 import com.example.shadow_project.entity.User.User;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
@@ -13,8 +13,11 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "project")
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Project {
 
     @Id

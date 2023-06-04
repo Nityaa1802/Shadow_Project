@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
@@ -53,5 +56,22 @@ public class ProjectController {
 
         }
     }
-    
+
+//    @GetMapping("/byTeamMember/{userName}")
+//    public Project getProjectByTeamMember(@PathVariable("userName") String userName){
+//        return this.projectService.getProjectByTeamMember(userName);
+//    }
+
+    @GetMapping("/completedProject")
+    public List<Project> getComletedProjects(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                             @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
+        List<Project> projectList=this.projectService.getCompletedProject(pageNumber,pageSize);
+        return projectList;
+    }
+
+    @GetMapping("/byUserName")
+    public Map<String,List<Project>> getProjectByUser(@RequestParam(value = "userName") String userName){
+        Map<String,List<Project>> projectList=this.projectService.getProjectByUser(userName);
+        return projectList;
+    }
 }

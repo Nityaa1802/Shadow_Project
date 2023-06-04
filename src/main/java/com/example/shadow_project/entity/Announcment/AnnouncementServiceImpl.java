@@ -1,8 +1,5 @@
 package com.example.shadow_project.entity.Announcment;
 
-import ch.qos.logback.core.model.Model;
-import com.example.shadow_project.entity.Project.Project;
-import com.example.shadow_project.entity.Project.ProjectDto;
 import com.example.shadow_project.entity.User.UserRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;

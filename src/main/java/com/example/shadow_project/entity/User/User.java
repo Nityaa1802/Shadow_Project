@@ -9,12 +9,12 @@ import java.util.*;
 
 @Entity
 @Table(name = "user")
-//@AllArgsConstructor
-//@Getter
-//@Setter
-//@ToString
-//@NoArgsConstructor
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+
 public class User {
 
     @Id
