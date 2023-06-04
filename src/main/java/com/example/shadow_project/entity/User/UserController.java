@@ -7,12 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepo userRepo;
 
     @PostMapping("/register/response")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody UserDto userDto){
@@ -42,5 +46,14 @@ public class UserController {
     public ResponseEntity<UserResponse> updateUserDetails(@PathVariable("userId") Long userId,@Valid @RequestBody UserDto userDto) {
         UserResponse userResponse=this.userService.updateUserDetails(userId,userDto);
         return ResponseEntity.ok(userResponse);
+    }
+
+    @PutMapping("/updatePassword/{userId}/{newPassword}/{oldPassword}")
+    public ResponseEntity<Map<UserResponse,String>> updatePassword(@PathVariable("userId") Long userId,
+                                                                   @PathVariable("newPassword") String newPassword,
+                                                                   @PathVariable("oldPassword") String oldPassword) throws Exception {
+
+        Map<UserResponse,String> result = this.userService.updatePassword(userId,oldPassword,newPassword);
+        return ResponseEntity.ok(result);
     }
 }
