@@ -51,4 +51,17 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         }
         return announcementList;
     }
+
+    @Override
+    public List<Announcement> latestAnnouncement() throws Exception {
+        TypedQuery<Announcement> query = entityManager.createQuery("SELECT a FROM Announcement a ORDER BY a.uploadedOn DESC", Announcement.class);
+        query.setMaxResults(30);
+        List<Announcement> announcementList = query.getResultList();
+        if(announcementList==null || announcementList.size()==0){
+            throw new Exception("There are no latest Announcements");
+        }
+        return announcementList;
+    }
+
+
 }
