@@ -2,6 +2,7 @@ package com.example.shadow_project.entity.Project;
 
 import com.example.shadow_project.entity.TeamMember.TeamMember;
 import com.example.shadow_project.entity.User.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -44,6 +45,7 @@ public class Project {
     @Column(name = "startedDate")
     private Date startedDate;
 
+    @JsonBackReference
     @ManyToOne
     private User teamLead;
 
@@ -53,6 +55,7 @@ public class Project {
     @Column(name = "img")
     private String img;
 
+    @JsonBackReference
     @ElementCollection(fetch = FetchType.EAGER )
     @CollectionTable(name ="Team_Members",joinColumns = @JoinColumn(name = "projectId"))
     private Set<TeamMember> teamMembers=new HashSet<>();

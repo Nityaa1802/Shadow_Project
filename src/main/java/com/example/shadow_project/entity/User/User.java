@@ -1,6 +1,7 @@
 package com.example.shadow_project.entity.User;
 
 import com.example.shadow_project.entity.Project.Project;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,6 +46,7 @@ public class User {
     @Column(name = "img")
     private String img;
 
+    @JsonManagedReference
     @ManyToMany
     private List<Project> projects=new ArrayList<>();
 

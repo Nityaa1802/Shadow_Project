@@ -43,14 +43,14 @@ public class ProjectServiceImpl implements ProjectService {
         Project savedProject=projectRepo.save(project);
 
 
-//        User user=this.userRepo.getUserByUserName(projectDto.getTeamLead());
-//        List<Project> projectList=user.getProjects();
-//        if(projectList==null||projectList.size()==0){
-//            projectList=new ArrayList<>();
-//        }
-//        projectList.add(project);
-//        user.setProjects(projectList);
-//        this.userRepo.save(user);
+        User user=this.userRepo.getUserByUserName(projectDto.getTeamLead());
+        List<Project> projectList=user.getProjects();
+        if(projectList==null||projectList.size()==0){
+            projectList=new ArrayList<>();
+        }
+        projectList.add(project);
+        user.setProjects(projectList);
+        this.userRepo.save(user);
         return savedProject;
 
     }
@@ -86,13 +86,13 @@ public class ProjectServiceImpl implements ProjectService {
 
         }
          User user=this.userRepo.getUserByUserName(teamMemberUserName);
-//        List<Project> projectList=user.getProjects();
-//        if(projectList==null||projectList.size()==0){
-//            projectList=new ArrayList<>();
-//        }
-//        projectList.add(project);
-//        user.setProjects(projectList);
-//        this.userRepo.save(user);
+        List<Project> projectList=user.getProjects();
+        if(projectList==null||projectList.size()==0){
+            projectList=new ArrayList<>();
+        }
+        projectList.add(project);
+        user.setProjects(projectList);
+        this.userRepo.save(user);
         TeamMember teamMember=new TeamMember(user,role);
 
         Set<TeamMember> teamMemberSet;
@@ -147,16 +147,16 @@ public class ProjectServiceImpl implements ProjectService {
         project.setTeamMembers(teamMemberSet);
 
         this.projectRepo.save(project);
-//        User user=this.userRepo.getUserByUserName(teamMemberUserName);
-//        List<Project> projects=user.getProjects();
-//
-//        removedProject=projects.remove(project);
-//        if (!removedProject){
-//            return null;
-//        }
-//        user.setProjects(projects);
-//
-//        this.userRepo.save(user);
+        User user=this.userRepo.getUserByUserName(teamMemberUserName);
+        List<Project> projects=user.getProjects();
+
+        removedProject=projects.remove(project);
+        if (!removedProject){
+            return null;
+        }
+        user.setProjects(projects);
+
+        this.userRepo.save(user);
 
 
         return project;
@@ -179,9 +179,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Map<String,List<Project>> getProjectByUser(String userName) {
         List<Project> projectsByTeamLead=this.projectRepo.getProjectsByTeamLead(userName);
-//        List<Project> projectsByUser=this.userRepo.getUserByUserName(userName).getProjects();
-//        projectsByUser.removeIf(project -> project.getTeamLead().getUserName().equals(userName));
-        List<Project> projectsByUser=this.projectRepo.getProjectsByTeamMember(userName);
+        List<Project> projectsByUser=this.userRepo.getUserByUserName(userName).getProjects();
+        projectsByUser.removeIf(project -> project.getTeamLead().getUserName().equals(userName));
+//        List<Project> projectsByUser=this.projectRepo.getProjectsByTeamMember(userName);
         Map<String,List<Project>> map=new HashMap<>();
         map.put("TeamLead",projectsByTeamLead);
         map.put("TeamMember",projectsByUser);
