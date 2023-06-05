@@ -12,7 +12,7 @@ import java.util.List;
 public interface ProjectRepo extends JpaRepository<Project,Long> {
 //    Page<Project> findByCompleted(@RequestParam("completed") boolean completed, Pageable pageable);
 
-Page<Project> findByIsCompletedIsTrue(Pageable pageable);
+    Page<Project> findByIsCompletedIsTrue(Pageable pageable);
 
     @Query(value = "select  p from Project p where p.id= :id")
     Project getById(@PathParam("id") Long id);
