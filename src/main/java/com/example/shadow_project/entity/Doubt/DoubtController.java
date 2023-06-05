@@ -1,5 +1,6 @@
 package com.example.shadow_project.entity.Doubt;
 
+import com.example.shadow_project.entity.Announcment.Announcement;
 import com.example.shadow_project.entity.Answer.AnswerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,12 @@ public class DoubtController {
     public ResponseEntity<List<Doubt>> top6Doubts() throws Exception {
         List<Doubt> doubtList = doubtService.top6Doubts();
         return ResponseEntity.ok(doubtList);
+    }
+
+    @GetMapping("/allDoubts")
+    public List<Doubt> getAllDoubts(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                  @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
+        List<Doubt> doubtList = this.doubtService.getAllDoubts(pageNumber,pageSize);
+        return doubtList;
     }
 }

@@ -1,10 +1,14 @@
 package com.example.shadow_project.entity.Announcment;
 
+import com.example.shadow_project.entity.Project.Project;
 import com.example.shadow_project.entity.User.UserRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,6 +62,16 @@ public class AnnouncementServiceImpl implements AnnouncementService{
             throw new Exception("There are no latest Announcements");
         }
         return announcementList;
+    }
+
+    @Override
+    public List<Announcement> getAllAnnouncements(int pageNumber,int pageSize) {
+
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<Announcement> announcementPage = this.announcementRepo.findAll(pageable);
+        List<Announcement> announcementList = announcementPage.getContent();
+        return announcementList;
+
     }
 
 

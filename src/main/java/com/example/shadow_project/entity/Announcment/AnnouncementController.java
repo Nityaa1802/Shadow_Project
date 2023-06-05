@@ -1,5 +1,6 @@
 package com.example.shadow_project.entity.Announcment;
 
+import com.example.shadow_project.entity.Project.Project;
 import com.example.shadow_project.entity.Project.ProjectDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +33,12 @@ public class AnnouncementController {
     public ResponseEntity<List<Announcement>> getLatestAnnouncement() throws Exception {
         List<Announcement> announcementList = announcementService.latestAnnouncement();
         return ResponseEntity.ok(announcementList);
+    }
+
+    @GetMapping("/allAnnouncement")
+    public List<Announcement> getAllAnnouncements(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                             @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
+        List<Announcement> announcementList = this.announcementService.getAllAnnouncements(pageNumber,pageSize);
+        return announcementList;
     }
 }

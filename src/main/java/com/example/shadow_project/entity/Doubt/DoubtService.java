@@ -13,4 +13,6 @@ public interface DoubtService {
     Doubt uploadAns(Long doubtId , AnswerDto answersDto);
 
     List<Doubt> top6Doubts() throws Exception;
+
+    List<Doubt> getAllDoubts(int pageNumber, int pageSize);
 }

@@ -6,6 +6,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -69,6 +72,15 @@ public class DoubtServiceImpl implements DoubtService {
             throw new Exception("There no Doubts Present at this point");
         }
         return doubts;
+    }
+
+    @Override
+    public List<Doubt> getAllDoubts(int pageNumber, int pageSize) {
+
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<Doubt> doubtPage = this.doubtRepo.findAll(pageable);
+        List<Doubt> doubtList = doubtPage.getContent();
+        return doubtList;
     }
 
 }

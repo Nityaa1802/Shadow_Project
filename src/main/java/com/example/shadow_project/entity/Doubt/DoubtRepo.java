@@ -1,6 +1,8 @@
 package com.example.shadow_project.entity.Doubt;
 
 import jakarta.websocket.server.PathParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,4 +13,6 @@ public interface DoubtRepo extends JpaRepository<Doubt, Long> {
     Doubt getById(@PathParam("id") Long id);
 
     List<Doubt> findTop6OrderByUploadOnDesc();
+
+    Page<Doubt> findAll(Pageable pageable);
 }
