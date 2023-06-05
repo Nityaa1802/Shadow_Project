@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.lang.annotation.Native;
+import java.util.List;
 
 public interface AnnouncementRepo extends JpaRepository<Announcement,Long> {
 
@@ -14,6 +15,8 @@ public interface AnnouncementRepo extends JpaRepository<Announcement,Long> {
 
     @Query(value = "select a from Announcement a where a.id= :id")
     Announcement getById(@PathParam("id") Long id);
+
+    List<Object> findAllByTitleContainingIgnoreCase(String input);
 
 
 }

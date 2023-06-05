@@ -25,5 +25,6 @@ public interface ProjectRepo extends JpaRepository<Project,Long> {
     @Query(value = "select p from Project p where p.teamLead.userName= :teamLead")
     List<Project> getProjectsByTeamLead(@PathParam("teamLead") String teamLead);
 
+    List<Object> findAllByProjectNameContainingIgnoreCase(String input);
 
 }

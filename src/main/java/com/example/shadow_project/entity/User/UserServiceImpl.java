@@ -1,6 +1,7 @@
 package com.example.shadow_project.entity.User;
 
 import com.example.shadow_project.exception.ResourceNotFoundException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
@@ -66,13 +68,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<UserResponse,String> updatePassword(Long userId, String oldPassword , String newPassword) throws Exception {
         User user = this.userRepo.getUser(userId);
-        if(oldPassword != user.getPassword()){
+        if(!oldPassword.equals(user.getPassword())){
             throw new Exception("Password dosen't match please enter the correct Password");
         }
-        User user1 = this.userRepo.updatePassword(newPassword,userId);
+        int updated= this.userRepo.updatePassword(newPassword,userId);
+        if (updated>0){
+            User user1=this.userRepo.getUser(userId);
         UserResponse userResponse = this.modelMapper.map(user1, UserResponse.class);
         Map<UserResponse,String> result = new HashMap<>();
         result.put(userResponse,"Your Password has been updated to : "+newPassword);
-        return result;
+        return result;}
+        else {
+            throw new Exception("Not Updated ");
+        }
     }
 }
