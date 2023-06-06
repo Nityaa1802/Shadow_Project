@@ -27,6 +27,6 @@ public interface ProjectRepo extends JpaRepository<Project,Long> {
 
 
 
-    List<Object> findAllByProjectNameOrDescriptionContainingIgnoreCase(String input);
+    List<Object> findAllByProjectNameContainingIgnoreCase(String input);
 
 }

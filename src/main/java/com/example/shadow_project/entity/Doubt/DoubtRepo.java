@@ -12,7 +12,7 @@ public interface DoubtRepo extends JpaRepository<Doubt, Long> {
     @Query(value = "select d from Doubt d where d.id= :id")
     Doubt getById(@PathParam("id") Long id);
 
-    List<Doubt> findTop6OrderByUploadOnDesc();
+//    List<Doubt> findTop6OrderByUploadOnDesc();
 
     Page<Doubt> findAll(Pageable pageable);
 
