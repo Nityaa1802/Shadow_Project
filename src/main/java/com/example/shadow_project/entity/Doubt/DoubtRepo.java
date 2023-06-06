@@ -15,4 +15,6 @@ public interface DoubtRepo extends JpaRepository<Doubt, Long> {
     List<Doubt> findTop6OrderByUploadOnDesc();
 
     Page<Doubt> findAll(Pageable pageable);
+
+    List<Object> findAllByQuestionContainingIgnoreCase(String input);
 }

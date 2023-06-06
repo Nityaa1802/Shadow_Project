@@ -33,7 +33,7 @@ public class GeneralServiceImpl implements GeneralService {
         Map<String,List<Object>> map=new HashMap<>();
 
         List<Object> userList=this.userRepo.findAllByNameContainingIgnoreCase(input);
-        List<Object> projectList= this.projectRepo.findAllByProjectNameContainingIgnoreCase(input);
+        List<Object> projectList= this.projectRepo.findAllByProjectNameOrDescriptionContainingIgnoreCase(input);
         List<Object> announcementList=this.announcementRepo.findAllByTitleContainingIgnoreCase(input);
         List<Object> doubtList=this.doubtRepo.findAllByQuestionContainingIgnoreCase(input);
         map.put("Users",userList);
