@@ -56,14 +56,14 @@ public class AnnouncementServiceImpl implements AnnouncementService{
     }
 
     @Override
-    public List<Announcement> latestAnnouncement() throws Exception {
+    public List latestAnnouncement() throws Exception {
 
         // this will fetch the date that was 30 days ago
-        Date thirtyDaysAgo = new Date(System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000);
+        Date thirtyDaysAgo = new Date(System.currentTimeMillis() - 30L * 24 * 60 * 60 * 1000);
 
-        Query query = entityManager.createQuery("select a from Announcement a where a.uploadedOn >= :thirtyDaysAgo");
+        Query query = entityManager.createQuery("select a from Announcement a where a.uploadedOn >= :thirtyDaysAgo", Announcement.class);
         query.setParameter("thirtyDaysAgo",thirtyDaysAgo);
-        List<Announcement> announcementList = query.getResultList();
+        List announcementList = query.getResultList();
         if(announcementList==null || announcementList.size()==0){
             throw new Exception("There are no latest Announcements");
         }
