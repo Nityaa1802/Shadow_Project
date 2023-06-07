@@ -79,7 +79,15 @@ public class DomainServiceImpl implements DomainService{
     }
 
     @Override
-    public List<Project> searchProjectInDomain() {
-        return null;
+    public List<Project> searchProjectInDomain(String input) {
+        List<Project> ans = new ArrayList<>();
+        List<Domain> domain = this.domainRepo.fidAllByDomainContainingIgnoreCase(input);
+        for (Domain d : domain) {
+            for (Long pId :d.getProjectsInDomain()) {
+                Project p = this.projectRepo.getById(pId);
+                ans.add(p);
+            }
+        }
+        return ans;
     }
 }

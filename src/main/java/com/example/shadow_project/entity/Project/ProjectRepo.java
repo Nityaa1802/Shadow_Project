@@ -1,5 +1,6 @@
 package com.example.shadow_project.entity.Project;
 
+import com.example.shadow_project.entity.Domain.Domain;
 import jakarta.websocket.server.PathParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
