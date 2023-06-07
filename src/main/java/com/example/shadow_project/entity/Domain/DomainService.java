@@ -9,7 +9,7 @@ public interface DomainService {
     Domain uploadDomain(String domain , Long projectId);
 
     void updateDomain(List<String> domainsUploadedByUser , Long projectId);
-    List<Domain> allDomains();
+    List<String> allDomains();
 
     List<Project> allProjectsInDomain(String domain) throws Exception;
 

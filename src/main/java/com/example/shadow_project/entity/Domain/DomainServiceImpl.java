@@ -57,8 +57,9 @@ public class DomainServiceImpl implements DomainService{
     }
 
     @Override
-    public List<Domain> allDomains() {
-        return null;
+    public List<String> allDomains() {
+        List<String> domain = domainRepo.getAllDomain();
+        return domain;
     }
 
     @Override
