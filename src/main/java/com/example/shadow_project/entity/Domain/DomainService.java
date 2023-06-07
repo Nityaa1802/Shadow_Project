@@ -6,10 +6,12 @@ import java.util.List;
 
 public interface DomainService {
 
-    Domain updateDomain();
+    Domain uploadDomain(String domain , Long projectId);
+
+    void updateDomain(List<String> domainsUploadedByUser , Long projectId);
     List<Domain> allDomains();
 
-    List<Project> allProjectsInDomain();
+    List<Project> allProjectsInDomain(String domain) throws Exception;
 
     List<Project> searchProjectInDomain();
 }
