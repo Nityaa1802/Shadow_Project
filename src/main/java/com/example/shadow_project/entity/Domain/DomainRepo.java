@@ -12,6 +12,4 @@ public interface DomainRepo extends JpaRepository<Domain,Long> {
     Domain getDomain(@PathParam("domain") String domain);
     @Query(value = "select d.domain from Domain d")
     List<String> getAllDomain();
-
-    List<Domain> fidAllByDomainContainingIgnoreCase(String input);
 }

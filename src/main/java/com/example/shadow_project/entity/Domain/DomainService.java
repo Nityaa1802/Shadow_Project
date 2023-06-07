@@ -13,7 +13,5 @@ public interface DomainService {
 
     List<Project> allProjectsInDomain(String domain) throws Exception;
 
-    List<Project> searchProjectInDomain(String input);
-
-
+    List<Project> searchProjectInDomain();
 }
